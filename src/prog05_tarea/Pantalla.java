@@ -54,7 +54,7 @@ public class Pantalla {
 
     }
 
-    public String pedirCuenta() {
+    public String pedirCuenta()   {
         String cuenta = "";
 
         do {

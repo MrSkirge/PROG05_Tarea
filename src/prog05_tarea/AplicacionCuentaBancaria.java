@@ -8,15 +8,13 @@ package prog05_tarea;
 public class AplicacionCuentaBancaria {
 
     static Pantalla pide;
-    static CuentaBancaria cuenta;
     
-    public static void main(String[] args) {
-
+    public static void main(String[] args
         pide = new Pantalla();
-        cuenta = new CuentaBancaria();
         
         pide.pedirTitular();
         pide.pedirCuenta();
+        System.out.println(cuenta.verCuenta());
 
         
         
