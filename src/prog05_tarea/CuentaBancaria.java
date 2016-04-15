@@ -20,8 +20,4 @@ public class CuentaBancaria {
     / @cuenta es el CCC
     / Los dos los introducimos por pantalla en la clase pantalla
     */
-    public CuentaBancaria (String titular, String cuenta) throws Exception{
-    
-   
-    
 }
