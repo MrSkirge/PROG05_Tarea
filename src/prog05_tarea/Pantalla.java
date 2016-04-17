@@ -60,7 +60,7 @@ public class Pantalla {
         do {
 
             System.out.println("Introduzca su código de cuenta cliente (CCC 20 Dígitos)");
-            cuenta = input.next();
+            cuenta = input.nextLine();
             //Combrobación de que el CCC está formado por enteros y tiene veinte
             //dígitos
             pat = Pattern.compile("[0-9]{20}");
@@ -77,8 +77,8 @@ public class Pantalla {
     }
 
     //Método que muestra por pantalla el menú de opciones
-    public int menu() {
-        int option = 0;
+    public void  menu() {
+      
         System.out.println("\"Bienvenido, ¿qué operación desdea realizar?");
         System.out.println("");
         System.out.println("(1) Ver Código Cuenta Cliente");
@@ -90,10 +90,9 @@ public class Pantalla {
         System.out.println("(7) Realizar ingreso");
         System.out.println("(8) Retirar efectivo");
         System.out.println("(9) Consulta saldo");
-        System.out.println("(0) Salir ");
-        
-        option = input.nextInt();
+        System.out.println("(10) Salir ");
+      
 
-        return option;
+         
     }
 }

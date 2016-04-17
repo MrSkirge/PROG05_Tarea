@@ -22,7 +22,7 @@ public class MyException extends Exception {
         return error;
     }
 
-    public double excSaldoInsufieciente(){
+    public String excSaldoInsufieciente(){
         String error = "Error, saldo insuficiente";
         return error;
     }
