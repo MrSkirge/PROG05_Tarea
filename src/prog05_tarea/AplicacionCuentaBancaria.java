@@ -12,12 +12,13 @@ public class AplicacionCuentaBancaria {
     static Pantalla peticion;
     static CuentaBancaria cuenta;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SaldoExcepcion {
         int opcion = 0;
         Scanner input = new Scanner(System.in);
 
         peticion = new Pantalla();
         cuenta = new CuentaBancaria(peticion.pedirTitular(), peticion.pedirCuenta());
+
         while (opcion != 10) {
             try {
                 peticion.menu();
@@ -25,27 +26,35 @@ public class AplicacionCuentaBancaria {
 
                 switch (opcion) {
                     case 1:
-
+                        cuenta.verCCC();
                         break;
                     case 2:
-
+                        cuenta.getTitular();
                         break;
                     case 3:
-
+                        cuenta.verCodigoEntidad();
                         break;
                     case 4:
-
+                        cuenta.verCodigoOficina();
                         break;
                     case 5:
-
+                        cuenta.verNumeroCuenta();
                         break;
                     case 6:
-
+                        cuenta.verDigitosControl();
                         break;
                     case 7:
 
                         break;
                     case 8:
+                        try {
+                            peticion.movimiento();
+                            cuenta.retirada(peticion.movimiento());
+                            break;
+                        } catch (SaldoExcepcion err) {
+                            System.err.println(+err.error()+);
+                            break;
+                        }
 
                         break;
                     case 9:

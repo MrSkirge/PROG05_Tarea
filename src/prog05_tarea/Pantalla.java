@@ -54,7 +54,7 @@ public class Pantalla {
 
     }
 
-    public String pedirCuenta()   {
+    public String pedirCuenta() {
         String cuenta = "";
 
         do {
@@ -76,9 +76,19 @@ public class Pantalla {
 
     }
 
+    public double movimiento() {
+
+        double dinero = 0;
+
+       System.out.println("Indique el valor del movimiento: ");
+        dinero = input.nextDouble();
+
+        return dinero;
+    }
+
     //Método que muestra por pantalla el menú de opciones
-    public void  menu() {
-      
+    public void menu() {
+
         System.out.println("\"Bienvenido, ¿qué operación desdea realizar?");
         System.out.println("");
         System.out.println("(1) Ver Código Cuenta Cliente");
@@ -91,8 +101,6 @@ public class Pantalla {
         System.out.println("(8) Retirar efectivo");
         System.out.println("(9) Consulta saldo");
         System.out.println("(10) Salir ");
-      
 
-         
     }
 }
