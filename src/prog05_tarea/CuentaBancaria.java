@@ -11,10 +11,9 @@ package prog05_tarea;
  */
 public class CuentaBancaria {
 
-    private String titular;
-    private String cuenta;
+    private static String titular;
+    private static String cuenta;
     private double saldo = 0;
-    private boolean control;
 
 
     /* Constructor para el set de las variables titular y codigo cuenta
@@ -23,6 +22,7 @@ public class CuentaBancaria {
      / Los dos los introducimos por pantalla en la clase pantalla
      */
     public CuentaBancaria(String titular, String cuenta) {
+
         this.titular = titular;
         this.cuenta = cuenta;
     }
@@ -60,7 +60,7 @@ public class CuentaBancaria {
     public String verCodigoOficina() {
         String oficina;
 
-        oficina = this.cuenta.substring(0, 4);
+        oficina = this.cuenta.substring(4, 8);
 
         return oficina;
     }
@@ -68,14 +68,18 @@ public class CuentaBancaria {
     public String verNumeroCuenta() {
         String numerocuenta;
 
-        numerocuenta = this.cuenta.substring(0, 4);
+        numerocuenta = this.cuenta.substring(10, 20);
 
         return numerocuenta;
 
     }
 
+    /*public String verDigitosControl() {
+        String digitosirol = this.cuenta.substring(8, 10);
+        return digitosirol;
+    }*/
     public String verDigitosControl() {
-        String digitoscontrol = this.cuenta.substring(8, 10);
+        String digitoscontrol = CuentaBancaria.obtenerDigitosControl();
         return digitoscontrol;
     }
 
@@ -91,12 +95,58 @@ public class CuentaBancaria {
 
     }
 
-    public void retirada(double retirada) throws SaldoExcepcion {
+    public void retirada(double retirada) throws MiExcepcion {
 
-        if (this.saldo < retirada) {
-            throw new SaldoExcepcion();
+        if (retirada > this.saldo) {
+            throw new MiExcepcion();
         } else {
             this.saldo = this.saldo - retirada;
         }
     }
-}
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public static int digitosControl() {
+        // Inicializo las variables para las operaciones
+        int c1 = 0;
+        int c2 = 0;
+        int control1 = 0;
+        int control2 = 0;
+        int control;
+
+        int i;
+        // Guardamos en un array los multiplicadores
+        int[] multiplicadores = {1, 2, 4, 8, 5, 10, 9, 7, 3, 6};
+        // Sumamos cada dígito de entidad y oficina (c1), 
+        // por la misma posición del array multiplicadores
+        //Como las dos primeras posiciones en una cuenta son siempre 00, salto 
+        //las dos primersas del multiplicador
+        for (i = 0; i < 8; i++) {
+            c1 += multiplicadores[i + 2] * Integer.parseInt(cuenta.substring(i, i + 1));
+        }
+        // Sumamos cada digito del nº cta. por 
+        // la misma posición del array multiplicadores
+        for (i = 0; i < 10; i++) {
+            c2 = c2 + multiplicadores[i] * Integer.parseInt(cuenta.substring(i + 10, i + 10 + 1));
+        }
+        // Restamos a 11 el resto de la división entre el valor obtenido y el número 11
+        c1 = 11 - (c1 % 11);
+        c2 = 11 - (c2 % 11);
+
+        if (c1 == 10) {
+            control1 = 1;
+        } else {
+            control1 = c1;
+        }
+
+        if (c2 == 10) {
+            control2 = 1;
+        } else {
+            control2 = c2;
+
+            control = Integer.parseInt(String.valueOf(control1)
+                    + String.valueOf(control2));
+            return control;
+        }

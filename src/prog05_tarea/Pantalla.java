@@ -45,7 +45,7 @@ public class Pantalla {
              * nombre no tenga el formato correcto.
              */
             while (mat.matches() == false) {
-                System.err.println("ERROR. Introduce un nombre válido");
+                System.err.println("ERROR. Introduce un nombre válido\n");
                 break;
             }
         } while (mat.matches() == false);
@@ -56,6 +56,7 @@ public class Pantalla {
 
     public String pedirCuenta() {
         String cuenta = "";
+        boolean aux = false;
 
         do {
 
@@ -65,12 +66,13 @@ public class Pantalla {
             //dígitos
             pat = Pattern.compile("[0-9]{20}");
             mat = pat.matcher(cuenta);
-
-            while (mat.matches() == false) {
-                System.err.println("ERROR. Introduce un número de cuenta válido");
+            aux = mat.matches();
+            //Compruebo tambien los digitos de control para el try/catch
+            while (aux == false) {
+                System.err.println("ERROR. Introduzca un número de cuenta válido\n");
                 break;
             }
-        } while (mat.matches() == false);
+        } while (aux == false);
 
         return (cuenta);
 
@@ -78,29 +80,46 @@ public class Pantalla {
 
     public double movimiento() {
 
-        double dinero = 0;
+        double movimiento;
 
-       System.out.println("Indique el valor del movimiento: ");
-        dinero = input.nextDouble();
+        System.out.println("Indique el valor del movimiento: \n");
+        movimiento = input.nextDouble();
+        System.out.print(" €");
+        return movimiento;
 
-        return dinero;
     }
 
     //Método que muestra por pantalla el menú de opciones
     public void menu() {
 
-        System.out.println("\"Bienvenido, ¿qué operación desdea realizar?");
-        System.out.println("");
-        System.out.println("(1) Ver Código Cuenta Cliente");
-        System.out.println("(2) Ver titular de la cuenta");
-        System.out.println("(3) Ver código entidad");
-        System.out.println("(4) Ver código oficina");
-        System.out.println("(5) Ver número cuenta");
-        System.out.println("(6) Ver dígitos de control de cuenta");
-        System.out.println("(7) Realizar ingreso");
-        System.out.println("(8) Retirar efectivo");
-        System.out.println("(9) Consulta saldo");
-        System.out.println("(10) Salir ");
+        System.out.println("\"Escoja una opción\n");
+        System.out.println("++++++++++++++++++++++++++++++++++++++\n");
+        System.out.println("(1) Ver Código Cuenta Cliente\n");
+        System.out.println("(2) Ver titular de la cuenta\n");
+        System.out.println("(3) Ver código entidad\n");
+        System.out.println("(4) Ver código oficina\n");
+        System.out.println("(5) Ver número cuenta\n");
+        System.out.println("(6) Ver dígitos de control de cuenta\n");
+        System.out.println("(7) Realizar ingreso\n");
+        System.out.println("(8) Retirar efectivo\n");
+        System.out.println("(9) Consulta saldo\n");
+        System.out.println("(10) Salir \n");
 
+    }
+
+    public void pantallaString(String texto) {
+
+        System.out.println(texto + "\n");
+
+    }
+
+    public void pantallaNumero(double numero) {
+        System.out.println(numero);
+
+    }
+
+    void pulsa() {
+        System.out.println("Pulsa ENTER para continuar");
+        input.nextLine();
     }
 }

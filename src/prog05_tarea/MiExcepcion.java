@@ -9,13 +9,21 @@ package prog05_tarea;
  *
  * @author Luis Calvo Martin
  */
-class SaldoExcepcion extends Exception {
+class MiExcepcion extends Exception {
 
-    public static String error()
+    public static String errorSaldo()
             {
             String error = "Error, saldo insuficiente";
             return error;
     
 }
+    
+      public static String errorCCC()
+            {
+            String error = "Error, número CCC incorrecto, revise";
+            return error; 
 
 }
+}
+
+
